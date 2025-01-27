@@ -39,7 +39,7 @@
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
-</dependencyManagement>
+	</dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -1,13 +1,15 @@
 package com.mx.shopping_cart.services;
 
-import javax.security.auth.login.AccountNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.mx.shopping_cart.dto.CartDto;
 import com.mx.shopping_cart.model.Cart;
 import com.mx.shopping_cart.model.Item;
 import com.mx.shopping_cart.repositories.CartRepository;
+
+import jakarta.ws.rs.NotFoundException;
 
 @Service
 public class CartServices {
@@ -15,30 +17,32 @@ public class CartServices {
 	@Autowired
 	private CartRepository repository;
 	
-	
-	public Cart addItem(Long id,Item item){
+	@Transactional
+	public CartDto addItem(Long id,Item item){
 		
-	    Cart cartItem = repository.findById(id).orElse(null);
-
-	    if (cartItem == null) {
-	        cartItem = new Cart(id);
-	    }
-
+		if (item == null) {
+            throw new IllegalArgumentException("Item cannot be null");
+        }
+		
+	    Cart cartItem = repository.findById(id).orElseGet(() -> new Cart(id));
 	    cartItem.getItems().add(item);
-
-	    return repository.save(cartItem);
-		
+	    Cart updatedCart = repository.save(cartItem);
+	    
+	    return new CartDto(updatedCart);
 	}
 	
-	public Cart findById(Long id) throws AccountNotFoundException {
+	public CartDto findById(Long id){
 		
-		Cart cartItem = repository.findById(id).orElseThrow(() -> new AccountNotFoundException("Id not found"));
-		return cartItem;
+		Cart cartItem = repository.findById(id).orElseThrow(() -> new NotFoundException("Id not found"));
+		return new CartDto(cartItem);
 
 	}
 	
-	public void delete(Long id) {
+	public void delete(Long id){
 		
+		if(!repository.existsById(id)) {
+		 throw new NotFoundException("Cart ID "+id+" Not Found for deletaion");
+		}
 		repository.deleteById(id);
 	}
 }

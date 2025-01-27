@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mx.product_catalog.dto.ProductDto;
 import com.mx.product_catalog.model.Product;
 import com.mx.product_catalog.service.ProductService;
 
@@ -19,13 +20,13 @@ public class ProductController {
 	private ProductService service;
 	
 	@PostMapping
-	public Product create(@RequestBody Product product) {
+	public ProductDto create(@RequestBody Product product) {
 		
 		return service.create(product);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public Product findById(@PathVariable Long id) throws Exception {
+	public ProductDto findById(@PathVariable Long id) throws Exception {
 		
 		return service.findById(id);
 	}
