@@ -23,7 +23,7 @@
 -  O Service Discovery facilita as chamadas entre microserviços, fornecendo informações dinâmicas sobre os serviços registrados. Ele mantém um cache temporário das instâncias disponíveis e facilita o balanceamento de carga, garantindo a distribuição eficiente de requisições entre as instâncias.
 <img src="https://github.com/TiagoFerreirago/Repositoryphoto/blob/main/Spring-Eureka.png" width="800" heigth="800" />
 <h4>Dependencias:</h4>
-<img src="https://github.com/TiagoFerreirago/Repositoryphoto/blob/main/application-discovery.png" width="500" heigth="250" />
+<img src="https://github.com/TiagoFerreirago/Repositoryphoto/blob/main/eureka-dependencies.png" width="500" heigth="250" />
 
 <h3>Gateway</h3>
 
