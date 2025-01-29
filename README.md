@@ -261,7 +261,7 @@ json
 
 ### Configuração do Elasticsearch
 
-Este microserviço está configurado para se conectar a uma instância do Redis rodando localmente na porta 6379. Se o seu Redis estiver em um servidor diferente, altere a configuração no arquivo application.properties:
+Este microserviço está configurado para se conectar a uma instância do Redis rodando localmente na porta 6379. Se o seu Redis estiver em um servidor diferente, altere a configuração no arquivo application.*:
 
 ```bash
 java
